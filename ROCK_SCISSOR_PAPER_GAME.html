@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="#">
+      <button onclick="rockFunction()">Rock</button>
+      <button onclick="scissorFunction()">Scissor</button>
+      <button onclick="paperFunction()">Paper</button>
+    </form>
+    <h1>Match History</h1>
+    <ul id="history"></ul>
+
+    <h1>Score</h1>
+    <h2>User: <span id="myScore"></span></h2>
+    <h2>Computer: <span id="computerScore"></span></h2>
+
+    <script>
+      let comPick = ["Rock", "Scissor", "Paper"];
+      //   let userScore = document.getElementById("myScore");
+      //   let comScore = document.getElementById("computerScore");
+      let newCompScore = 0;
+      let newUserScore = 0;
+
+      function rockFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("history");
+        let li = document.createElement("li");
+
+        alert("the computer picked " + comPick[i]);
+        if (i == 0) {
+          alert("its a tie");
+          li.textContent = "Rock vs. Rock";
+          list.appendChild(li);
+        } else if (i == 1) {
+          alert("You Win");
+          li.textContent = "Rock vs. Paper";
+          list.appendChild(li);
+          newUserScore++;
+          document.getElementById("myScore").innerHTML = newUserScore;
+        } else if (i == 2) {
+          alert("You Lose!");
+          li.textContent = "Rock vs. Scissor";
+          list.appendChild(li);
+          newCompScore++;
+          document.getElementById("computerScore").innerHTML = newCompScore;
+        }
+      }
+
+      function scissorFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("history");
+        let li = document.createElement("li");
+        alert("the computer picked " + comPick[i]);
+        if (i == 0) {
+          alert("You Lose");
+          li.textContent = "Rock vs. Scissor";
+          list.appendChild(li);
+          newCompScore++;
+          document.getElementById("computerScore").innerHTML = newCompScore;
+        } else if (i == 1) {
+          alert("Its a tie");
+          li.textContent = "Scissor vs. Scissor";
+          list.appendChild(li);
+        } else if (i == 2) {
+          alert("You Win!");
+          li.textContent = "Paper vs. Scissor";
+          list.appendChild(li);
+          newUserScore++;
+          document.getElementById("myScore").innerHTML = newUserScore;
+        }
+      }
+
+      function paperFunction() {
+        let i = Math.floor(Math.random() * 3);
+        let list = document.getElementById("history");
+        let li = document.createElement("li");
+        alert("the computer picked " + comPick[i]);
+        if (i == 0) {
+          alert("You Win");
+          li.textContent = "Rock vs. Paper";
+          list.appendChild(li);
+          newUserScore++;
+          document.getElementById("myScore").innerHTML = newUserScore;
+        } else if (i == 1) {
+          alert("You Lose");
+          li.textContent = "Scissor vs. Paper";
+          list.appendChild(li);
+          newCompScore++;
+          document.getElementById("computerScore").innerHTML = newCompScore;
+        } else if (i == 2) {
+          alert("Its a tie");
+          li.textContent = "Paper vs. Paper";
+          list.appendChild(li);
+        }
+      }
+    </script>
+  </body>
+</html>

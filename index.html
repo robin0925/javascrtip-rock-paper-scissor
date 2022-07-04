@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        background-color: rgb(95, 95, 243);
+
+        align-items: center;
+        justify-content: center;
+        font-family: poppins;
+        font-size: 15px !important;
+      }
+
+      .mytext {
+        font-size: 25px !important;
+        font-weight: bold;
+        color: blue;
+      }
+
+      .mytext span,
+      .computertext span,
+      .resulttext span {
+        font-size: 25px !important;
+        font-weight: bold;
+        color: black;
+      }
+
+      .computertext {
+        font-size: 25px !important;
+        font-weight: bold;
+        color: red;
+      }
+
+      .resulttext {
+        font-size: 25px !important;
+        font-weight: bold;
+        color: green;
+      }
+
+      #history {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="container d-flex align-items-center justify-content-center mt-5 pt-5"
+    >
+      <div
+        class="row container d-flex flex-column flex-md-row justify-content-center text-center bg-light p-5 m-5 rounded-5 shadow-lg"
+      >
+        <h1 class="py-5 fw-bolder">Mini Games</h1>
+        <div class="col">
+          <div><h4 class="fw-bolder">History</h4></div>
+          <div><ul id="history" class="text-center"></ul></div>
+        </div>
+        <div class="col">
+          <h1 class="mb-3 mytext">My Choice: <span id="myChoice"></span></h1>
+          <h1 class="mb-3 computertext">
+            Computer: <span id="computerChoice"></span>
+          </h1>
+          <h1 class="mb-3 resulttext">Result: <span id="result"></span></h1>
+          <div class="mt-3 mb-3">
+            <button id="rock" class="btn btn-primary mx-2">Rock</button>
+            <button id="paper" class="btn btn-warning mx-2">Paper</button>
+            <button id="scissor" class="btn btn-success mx-2">Scissor</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let myChoiceDisplay = document.getElementById("myChoice");
+      let computerChoiceDisplay = document.getElementById("computerChoice");
+      let resultDisplay = document.getElementById("result");
+      let possibleChoices = document.querySelectorAll("button");
+      let my_choice;
+      let computer_choice;
+      let Result;
+      let list = document.getElementById("history");
+      let li = document.createElement("li");
+
+      possibleChoices.forEach((possibleChoice) =>
+        possibleChoice.addEventListener("click", (e) => {
+          my_choice = e.target.id;
+          myChoiceDisplay.innerHTML = my_choice;
+          Computer_turn();
+          getResult();
+        })
+      );
+
+      function Computer_turn() {
+        let randomChoice = Math.floor(Math.random() * 3);
+        let list = document.getElementById("history");
+        let p = document.createElement("p");
+
+        if (randomChoice == 0) {
+          computer_Choice = "rock";
+          p.textContent = "Rock vs. Rock";
+          list.appendChild(p);
+        }
+
+        if (randomChoice == 1) {
+          computer_Choice = "paper";
+          p.textContent = "Rock vs. Paper";
+          list.appendChild(p);
+        }
+
+        if (randomChoice == 2) {
+          computer_Choice = "scissor";
+          p.textContent = "Rock vs. Scissor";
+          list.appendChild(p);
+        }
+
+        document.getElementById("computerChoice").innerHTML = computer_Choice;
+      }
+
+      function getResult() {
+        if (computer_Choice == my_choice) {
+          Result = "DRAW";
+        }
+
+        if (computer_Choice == "rock" && my_choice == "paper") {
+          Result = "You Win!";
+        }
+
+        if (computer_Choice == "rock" && my_choice == "scissor") {
+          Result = "You Lose!";
+        }
+
+        if (computer_Choice == "scissor" && my_choice == "paper") {
+          Result = "You Lose!";
+        }
+
+        if (my_choice == "rock" && computer_Choice == "paper") {
+          Result = "You Lose!";
+        }
+
+        if (my_choice == "rock" && computer_Choice == "scissor") {
+          Result = "You Win!";
+        }
+
+        if (my_choice == "scissor" && computer_Choice == "rock") {
+          Result = "You Lose!";
+        }
+
+        if (my_choice == "scissor" && computer_Choice == "paper") {
+          Result = "You Win!";
+        }
+
+        resultDisplay.innerHTML = Result;
+        // document.getElementById("history").textContent =
+        //   my_choice + " V.S " + computer_Choice + " " + " -> " + Result;
+      }
+    </script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
